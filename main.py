@@ -1,3 +1,5 @@
+import random
+
 players_list = []
 
 ###
@@ -6,15 +8,19 @@ players_list = []
 def generate_players_list():
 
     # open the file containing list of players player-list.txt
-    with open('./player-list.txt', 'r') as f:
+    with open('player-list.txt', 'r') as f:
         # read the file one line at a time
 
+        skill_level = ['A', 'B', 'C]']
+
         for line in f:
-            # create a {} for each player
+            # create a {} representing each player
             player_name = line.split()
             print(player_name)
+    
             players_list.append({"name": player_name[0] + " " + player_name[1],
-                                "score": []})
+                                "score": [],
+                                "skill_level": skill_level[random.randint(0, 2)]})
 
 
 ###
@@ -40,7 +46,7 @@ def main():
     generate_players_list()
     print(players_list)
     
-    check_player_entries(players_list, 3)
+    check_player_entries(players_list, 5)
 
 
 if __name__ == "__main__":
