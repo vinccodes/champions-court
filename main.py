@@ -1,6 +1,9 @@
 import random
+import sys
 
 players_list = []
+available_courts = sys.argv[2]
+print(f"Available Courts: {available_courts}")
 
 ###
 # Given a list of players .txt file parse the text file into a python list of players
@@ -65,22 +68,29 @@ def sort_players_list(players_list):
 #  Return a list of courts with the assigned players 
 ###
 def assign_courts(players_list, available_courts):
-    pass
     courts_assigned = []
     # iterate for every available court
-    for i in range(available_courts):
-        # add 4 four players in the court
-        pass
-        # assign all the level A
-
-        # assign all level B
-
-        # assign all level C
+    for i in range(0, int(available_courts)):
+        courts_assigned.append({
+            "court_number" : i+1,
+            "players": []
+            })
+        
+        key = i*4
+        # keep adding next 4 players to court until there are 4 players
+        while (len(courts_assigned[i]["players"]) < 4):
+            courts_assigned[i]["players"].append(players_list[key])
+            key +=1
+        
+    # Print courts_assigned
+    print("Courts Assigned: \n")
+    for court in courts_assigned:
+        print(f"Court:{court['court_number']}\n{court['players']}\n")
 
 ###
 # Print out the players_list in human readable format
 ###
-def display_player_list(players_list):
+def display_players_list(players_list):
 
     # iterate player list
     for i in range(len(players_list)):
@@ -90,10 +100,11 @@ def display_player_list(players_list):
 def main():
     generate_players_list()
     print(players_list)
-    
     #check_player_entries(players_list, 5)
     sort_players_list(players_list)
-    display_player_list(players_list)
+    #display_players_list(players_list)
+    assign_courts(players_list, available_courts)
+    
 
 if __name__ == "__main__":
     main()
