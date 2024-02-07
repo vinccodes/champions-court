@@ -3,15 +3,16 @@ import sys
 
 players_list = []
 available_courts = sys.argv[2]
+filename = str(sys.argv[4])
 print(f"Available Courts: {available_courts}")
 
 ###
 # Given a list of players .txt file parse the text file into a python list of players
 ###
-def generate_players_list():
+def generate_players_list(filename):
 
     # open the file containing list of players player-list.txt
-    with open('player-list.txt', 'r') as f:
+    with open(filename, 'r') as f:
         # read the file one line at a time
 
         skill_level = ['A', 'B', 'C']
@@ -98,7 +99,7 @@ def display_players_list(players_list):
 
 
 def main():
-    generate_players_list()
+    generate_players_list(filename)
     print(players_list)
     #check_player_entries(players_list, 5)
     sort_players_list(players_list)
